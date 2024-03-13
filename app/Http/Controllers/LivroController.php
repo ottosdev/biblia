@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\infra\Services\LivroService;
 use App\Models\Livro;
 use Illuminate\Http\Request;
 
 class LivroController extends Controller
 {
+    public function __construct(protected LivroService $livroService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return $this->livroService->obterTodosOsLivros();
     }
 
     /**
@@ -28,15 +33,20 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $livro = $this->livroService->salvarLivro($request->all());
+        if (!$livro) {
+            return response()->json(['message' => 'Error ao salvar livro'], 404);
+        }
+
+        return response()->json(['data' => $livro], 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Livro $livro)
+    public function show(int $id)
     {
-        //
+        return $this->livroService->obterLivroPorId($id);
     }
 
     /**
@@ -50,16 +60,28 @@ class LivroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Livro $livro)
+    public function update(Request $request, int $id)
     {
-        //
+        $livro = $this->livroService->atualizarLivro($request->all(), $id);
+
+        if (!$livro) {
+            return response()->json(['message' => 'Error ao realizar operação!']);
+        }
+
+        return response()->json(['message' => 'Livro atualizado com sucesso!'], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Livro $livro)
+    public function destroy(int $id)
     {
-        //
+        $livro = $this->livroService->deletarLivro($id);
+
+        if (!$livro) {
+            return response()->json(['message' => 'Error ao realizar operação!']);
+        }
+
+        return response()->json(['message' => 'Livro deletado com sucesso!'], 200);
     }
 }

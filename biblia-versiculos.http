@@ -1,0 +1,47 @@
+POST http://localhost:8000/api/versiculo
+Content-Type: application/json
+
+{
+  "capitulo_id": 7,
+  "numero": 1,
+  "texto": "teste"
+}
+
+
+
+### BUSCAR TODOS
+
+GET http://localhost:8000/api/versiculo
+Accept: application/json
+
+<> 2024-03-13T184805.200.json
+<> 2024-03-13T163631.200.json
+<> 2024-03-13T162812.200.json
+<> 2024-03-13T160859.200.json
+
+### BUSCAR POR ID
+
+GET http://localhost:8000/api/versiculo/4
+Accept: application/json
+
+<> 2024-03-13T160909.200.json
+<> 2024-03-13T160632.200.json
+
+###
+PUT http://localhost:8000/api/versiculo/4
+Content-Type: application/json
+
+{
+    "capitulo_id": 7,
+    "numero": 1,
+    "texto": "testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+}
+
+<> 2024-03-13T160856.200.json
+<> 2024-03-13T160823.200.json
+
+###
+DELETE http://localhost:8000/api//capitulo/3
+Content-Type: application/json
+
+<> 2024-03-13T162804.200.json

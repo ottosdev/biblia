@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('usuario_id')->references('id')->on('users');
             $table->foreign('capitulo_id')->references('id')->on('capitulos');
             $table->foreign('livro_id')->references('id')->on('livros');
-            $table->foreign('livro_id')->references('id')->on('versiculos');
+            $table->foreign('versiculo_id')->references('id')->on('versiculos');
         });
     }
 
